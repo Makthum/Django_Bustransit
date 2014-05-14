@@ -16,6 +16,9 @@ urlpatterns = patterns('',
 
     url(r'^searchbus/$','bustranit.views.searchbus',name='searchbus'),
 
+    url(r'^schedule/$','bustranit.views.schedule',name='schedule'),
+    url(r'^locate/$','bustranit.views.locate',name='schedule'),
+
     # Uncomment the next line to enable the admin:
     url(r'^admin/', include(admin.site.urls)),
 )

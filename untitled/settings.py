@@ -1,20 +1,30 @@
 # Django settings for untitled project.
 import os.path
-
-
+import djcelery
+import celery.schedules
+from celery.schedules import crontab
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
     # ('Your Name', 'your_email@example.com'),
 )
+CELERYBEAT_SCHEDULE = {
+    # crontab(hour=0, minute=0, day_of_week='saturday')
+    'real-timedata': {  # example: 'file-backup'
+        'task': 'loadrealtimedata',  # example: 'files.tasks.cleanup'
+        'schedule': crontab()
+    },
+}
 
+# if you want to place the schedule file relative to your project or something:
+CELERYBEAT_SCHEDULER = "djcelery.schedulers.DatabaseScheduler"
 MANAGERS = ADMINS
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'bustransit',                      # Or path to database file if using sqlite3.
+        'NAME': 'gtfs',                      # Or path to database file if using sqlite3.
         # The following settings are not used with sqlite3:
         'USER': 'root',
         'PASSWORD': 'enigma',
@@ -23,6 +33,7 @@ DATABASES = {
     }
 }
 
+djcelery.setup_loader()
 # Hosts/domain names that are valid for this site; required if DEBUG is False
 # See https://docs.djangoproject.com/en/1.5/ref/settings/#allowed-hosts
 ALLOWED_HOSTS = []
@@ -127,6 +138,8 @@ INSTALLED_APPS = (
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
     'bustranit',
+    'djcelery',
+    'bootstrap3_datetime',
 )
 
 SESSION_SERIALIZER = 'django.contrib.sessions.serializers.JSONSerializer'
