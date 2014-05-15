@@ -80,9 +80,7 @@ def schedule(request):
         for schedule in schedules:
             stoptime={}
             print schedule.stop_id
-            stop=Stops.objects.filter(stop_id=schedule.stop_id)[0]
-
-            stoptime["stop_name"]=stop.stop_name
+            stoptime["stop_name"]=schedule.stop_id.stop_name
             stoptime["arrival_time"]=schedule.arrival_time
             stoptime["departure_time"]=schedule.departure_time
             stoptimes.append(stoptime)
@@ -92,5 +90,5 @@ def schedule(request):
 def locate(request):
     trip_id=request.GET['trip_id']
     vp=VehiclePositions.objects.filter(trip_id=trip_id)[0]
-    print vp
+    print vp.trip_id.trip_id
     return render_to_response('locate.html',{'vehicleposition':vp})

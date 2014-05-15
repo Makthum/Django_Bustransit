@@ -47,15 +47,15 @@
         </tr>
       </thead>
       <tbody>
-          {% for stop_time in stoptimes %}
+
         <tr>
 
-          <td>{{ stop_time.stop_name }}</td>
+          <td>{{ vehicleposition.trip_id }}</td>
            <td>{{ stop_time.arrival_time }}</td>
           <td>{{ stop_time.departure_time }}</td>
 
         </tr>
-          {% endfor %}
+
         
 
       </tbody>

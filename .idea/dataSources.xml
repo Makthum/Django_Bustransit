@@ -4,7 +4,7 @@
     <data-source source="LOCAL" name="Django default" uuid="65563eb0-223e-4b01-8855-2ebb35b72223">
       <driver-ref>sqlite.xerial</driver-ref>
       <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql:///bustransit</jdbc-url>
+      <jdbc-url>jdbc:mysql:///gtfs</jdbc-url>
       <user-name>root</user-name>
       <user-password>dfcfdfc4dfc3dfcddfc7dfcb</user-password>
       <libraries />
